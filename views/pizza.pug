@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1= "Search results - pizza"
+    -
+        let results = [
+            {"pizza_name" : "Chicken Pizza", "pizza_type" : "Chicken", "pizza_price" : 200},
+            {"pizza_name" : "Cheese Pizza", "pizza_type" : "Cheese", "pizza_price" : 150},
+            {"pizza_name" : "Veg Onion Pizza", "pizza_type" : "Veg", "pizza_price" : 100}
+        ]
+
+    div(class="container-fluid")
+        div(class="row")
+            each item,index in results
+                div(class="col-sm-2"  onclick =`buy(${index})`) #{item.pizza_name}
+                div(class="col-sm-2"  onclick =`buy(${index})`) #{item.pizza_type}
+                div(class="col-sm-2"  onclick =`buy(${index})`) #{item.pizza_price}
+    script.
+        function buy(a)
+        {
+            alert(`You purchased Item ${a+1}`)
+        }
