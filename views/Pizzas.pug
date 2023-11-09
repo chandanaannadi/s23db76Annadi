@@ -1,0 +1,10 @@
+extends layout
+ 
+block content
+  h1= title
+  - let pizzas=results
+  //- button.btn( class="btn-primary ml-1", onclick= destinationcreate) Create
+  div(class="container-fluid")
+  div(class="row m-1")
+    each pizza in pizzas
+      div(class="col-ml-1 btn btn-light") #{pizza._id} - #{pizza.pizza_name} - #{pizza.pizza_type} - #{pizza.pizza_price}
