@@ -1,0 +1,56 @@
+extends layout
+
+block content
+  h1= title
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let pizzaid = toShow._id
+    - let pizza_name = toShow.pizza_name
+    - let pizza_type = toShow.pizza_type
+    - let pizza_price = toShow.pizza_price
+    - let actionid = "/resource/pizzas/" + pizzaid
+
+    script.
+      let actionid = "#{actionid}"
+
+    div
+      div.row
+        div(class='pizzaAttr mr-3') Pizza ID is:
+        div #{pizzaid}
+      div.row
+        div(class='pizzaAttr mr-3') Pizza name is:
+        div #{pizza_name}
+      div.row
+        div(class='pizzaAttr mr-3') Pizza type is:
+        div #{pizza_type}
+      div.row
+        div(class='pizzaAttr mr-3') Pizza price is:
+        div #{pizza_price}
+
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+    script.
+      function cancel() {
+        // Go back to the home page for the pizza collection
+        window.location.href='/pizzas'
+      }
+
+    script.
+      function deleteOnid() {
+        console.log("starting delete")
+        // delete first
+        fetch(actionid, {
+          method: 'DELETE'  //Don't need a body for the delete
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Delete succeeded")
+          window.location.href='/pizzas'
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Delete failed " + error )
+        });
+      }

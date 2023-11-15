@@ -12,7 +12,7 @@ router.post('/pizzas', pizza_controller.pizza_create_post);
 // DELETE request to delete pizza.
 router.delete('/pizzas/:id', pizza_controller.pizza_delete);
 // PUT request to update pizza.
-router.put('/pizzas/:id', pizza_controller.pizza_update_put);
+router.put('/pizzasUpdate/:id', pizza_controller.pizza_update_put);
 // GET request for one pizza.
 router.get('/pizzas/:id', pizza_controller.pizza_detail);
 // GET request for list of all pizza items.

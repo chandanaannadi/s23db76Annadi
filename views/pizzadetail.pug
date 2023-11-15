@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  - let pizzaid = toShow._id
+  - let pizza_name = toShow.pizza_name
+  - let pizza_type = toShow.pizza_type
+  - let pizza_price = toShow.pizza_price
+
+  div
+    div.row
+      div(class='pizzaAttr mr-3') Pizza ID is:
+      div #{pizzaid}
+    div.row
+      div(class='pizzaAttr mr-3') Pizza name is:
+      div #{pizza_name}
+    div.row
+      div(class='pizzaAttr mr-3') Pizza type is:
+      div #{pizza_type}
+    div.row
+      div(class='pizzaAttr mr-3') Pizza price is:
+      div #{pizza_price}

@@ -4,14 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var boardRouter = require('./routes/board');
-var pizzaRouter = require('./routes/pizza');
-var chooseRouter = require('./routes/choose');
-var resourceRouter = require('./routes/resource');
-const pizza = require("./Models/pizza");
-
 var app = express();
 
 require('dotenv').config();
@@ -33,6 +25,47 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+var pizza = require('./models/pizza');
+
+// async function recreateDB(){
+//   // Delete everything
+//   await pizza.deleteMany();
+//   let instance1 = new
+//   pizza({pizza_name:" Chicken Pizza", pizza_type:'Chicken', pizza_price:200});
+//   instance1.save().then(doc=>{
+//   console.log("First object saved")}
+//   ).catch(err=>{
+//   console.error(err)
+//   });
+//   let instance2 = new
+//   pizza({pizza_name:" Cheese Pizza", pizza_type:'Cheese', pizza_price:150});
+//   instance2.save().then(doc=>{
+//   console.log("second object saved")}
+//   ).catch(err=>{
+//   console.error(err)
+//   });
+//   let instance3 = new
+//   pizza({pizza_name:" Veg onion pizza", pizza_type:'veg', pizza_price:100});
+//   instance3.save().then(doc=>{
+//   console.log("third object saved")}
+//   ).catch(err=>{
+//   console.error(err)
+//   });
+//   mongoose.connect(connectionString);
+//   }
+//   let reseed = true;
+//   if (reseed) {recreateDB();}
+  
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var boardRouter = require('./routes/board');
+var pizzaRouter = require('./routes/pizza');
+var chooseRouter = require('./routes/choose');
+var resourceRouter = require('./routes/resource');
+
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -56,36 +89,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
+  
 
 
 module.exports = app;
-// We can seed the collection if needed on server start
-async function recreateDB(){
-// Delete everything
-await pizza.deleteMany();
-let instance1 = new
-pizza({pizza_name:" Chicken Pizza", pizza_type:'Chicken', pizza_price:200});
-instance1.save().then(doc=>{
-console.log("First object saved")}
-).catch(err=>{
-console.error(err)
-});
-let instance2 = new
-pizza({pizza_name:" Cheese Pizza", pizza_type:'Cheese', pizza_price:150});
-instance2.save().then(doc=>{
-console.log("second object saved")}
-).catch(err=>{
-console.error(err)
-});
-let instance3 = new
-pizza({pizza_name:" Veg onion pizza", pizza_type:'veg', pizza_price:100});
-instance3.save().then(doc=>{
-console.log("third object saved")}
-).catch(err=>{
-console.error(err)
-});
-mongoose.connect(connectionString);
-}
-let reseed = true;
-if (reseed) {recreateDB();}
+

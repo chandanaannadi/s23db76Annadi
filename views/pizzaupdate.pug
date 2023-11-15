@@ -1,0 +1,48 @@
+extends layout
+
+block content
+    h1= title
+    - let pizzaid = toShow._id
+    - let pizza_name = toShow.pizza_name
+    - let pizza_type = toShow.pizza_type
+    - let pizza_price = toShow.pizza_price
+
+    div.row(class='mb-2')
+        div.mr-1 ID is
+        div #{pizzaid}
+
+    - let actionid = "/resource/pizzasUpdate/" + pizzaid
+
+    form(id='pizzaForm', action= actionid, method="PUT")
+        div.form-group
+            label.pizzaAttr(for='pizza_name') pizza type
+            input#pizza_name(type='text' name='pizza_name', value= pizza_name)
+
+        div.form-group
+            label.pizzaAttr(for='pizza_type') pizza name
+            input#pizza_type(type='text' name='pizza_type', value= pizza_type)
+
+        div.form-group
+            label.pizzaAttr(for='pizza_price') pizza price
+            input#pizza_price(type='number' name='pizza_price', value= pizza_price)
+
+        input(type="submit")
+
+        script.
+            document.forms['pizzaForm'].addEventListener('submit', (event) => {
+                event.preventDefault();
+                // TODO do something here to show user that form is being submitted
+                fetch(event.target.action, {
+                    method: 'PUT',
+                    body: new URLSearchParams(new FormData(event.target)), // event.target is the form
+                }).then((resp) => {
+                    return resp.json(); // or resp.text() or whatever the server sends
+                }).then((body) => {
+                    alert("Update succeeded");
+                    // TODO handle body
+                }).catch((error) => {
+                    // TODO handle error
+                    alert("Update failed " + error);
+                });
+            });
+
