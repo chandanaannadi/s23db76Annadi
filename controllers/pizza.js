@@ -1,4 +1,4 @@
-var pizza = require('../models/pizza');
+var pizza = require('../Models/pizza');
 // List of all pizzas
 exports.pizza_list = async function (req, res) {
     try {
