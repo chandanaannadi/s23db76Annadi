@@ -9,7 +9,7 @@ var app = express();
 require('dotenv').config();
 const connectionString = process.env.MONGO_CON
 mongoose = require('mongoose');
-mongoose.connect(connectionString);
+mongoose.connect('mongodb+srv://ChandanaReddy:Chandana20@cluster0.ftpfgaz.mongodb.net/?retryWrites=true&w=majority');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
