@@ -1,22 +1,52 @@
+//- extends layout
+
+//- block content
+//-   h1= title
+//-     -
+//-         let results = [
+//-             {"pizza_name" : "Chicken Pizza", "pizza_type" : "Chicken", "pizza_price" : 200},
+//-             {"pizza_name" : "Cheese Pizza", "pizza_type" : "Cheese", "pizza_price" : 150},
+//-             {"pizza_name" : "Veg Onion Pizza", "pizza_type" : "Veg", "pizza_price" : 100}
+//-         ]
+
+//-     div(class="container-fluid")
+//-         div(class="row")
+//-             each item,index in results
+//-                 div(class="col-sm-2"  onclick =`buy(${index})`) #{item.pizza_name}
+//-                 div(class="col-sm-2"  onclick =`buy(${index})`) #{item.pizza_type}
+//-                 div(class="col-sm-2"  onclick =`buy(${index})`) #{item.pizza_price}
+//-     script.
+//-         function buy(a)
+//-         {
+//-             alert(`You purchased Item ${a+1}`)
+//-         }
+
 extends layout
 
 block content
   h1= title
-    -
-        let results = [
-            {"pizza_name" : "Chicken Pizza", "pizza_type" : "Chicken", "pizza_price" : 200},
-            {"pizza_name" : "Cheese Pizza", "pizza_type" : "Cheese", "pizza_price" : 150},
-            {"pizza_name" : "Veg Onion Pizza", "pizza_type" : "Veg", "pizza_price" : 100}
-        ]
+  -
+    let results = [
+      {"pizza_name" : "Chicken Pizza", "pizza_type" : "Chicken", "pizza_price" : 200},
+      {"pizza_name" : "Cheese Pizza", "pizza_type" : "Cheese", "pizza_price" : 150},
+      {"pizza_name" : "Veg Onion Pizza", "pizza_type" : "Veg", "pizza_price" : 100}
+    ]
 
-    div(class="container-fluid")
-        div(class="row")
-            each item,index in results
-                div(class="col-sm-2"  onclick =`buy(${index})`) #{item.pizza_name}
-                div(class="col-sm-2"  onclick =`buy(${index})`) #{item.pizza_type}
-                div(class="col-sm-2"  onclick =`buy(${index})`) #{item.pizza_price}
-    script.
-        function buy(a)
-        {
-            alert(`You purchased Item ${a+1}`)
-        }
+  // Add Bootstrap link for styling
+  link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css", integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm", crossorigin="anonymous")
+
+  div(class="container mt-4")
+    h2(class="mb-4 text-center text-secondary") Select a Pizza
+    .row
+      each item, index in results
+        .col-sm-4.mb-3
+          .card(style="width: 18rem; background-color: #d4edda; border-color: #c3e6cb;", onclick=`buy(${index})`)
+            .card-body
+              h5.card-title(class="card-title text-danger") #{item.pizza_name}
+              p.card-text(class="card-text text-success") Type: #{item.pizza_type}
+              p.card-text(class="card-text text-info") Price: $#{item.pizza_price}
+
+  script.
+    function buy(a) {
+      alert(`You purchased Item ${a + 1}`)
+    }
