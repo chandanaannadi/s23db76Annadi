@@ -27,6 +27,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//lab13 changes
 passport.use(new LocalStrategy(
   function(username, password, done) {
   Account.findOne({ username: username })
