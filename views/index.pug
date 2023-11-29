@@ -1,21 +1,33 @@
+//- extends layout
+
+//- block content
+//-   h1= title
+//-   p Welcome to northwest missouri
+//-   button(type="button", class="btn btn-secondary", onclick="goFaster()") Press Me
+//-   div(id="faster") Increase the speed
+  
+ 
+//-   script.
+//-     var mph = 20
+//-     var change = 1
+//-    function goFaster()
+//-     {
+       
+//-         mph =mph+change
+//-         change = change+1
+//-         document.getElementById("faster").textContent = `MPH ${mph} with change ${change}`
+//-     }
+
+//-   a(href='/pizza') Click here for pizza page
 extends layout
 
 block content
-  h1= title
-  p Welcome to northwest missouri
-  button(type="button", class="btn btn-secondary", onclick="goFaster()") Press Me
-  div(id="faster") Increase the speed
-  
- 
-  script.
-    var mph = 20
-    var change = 1
-   function goFaster()
-    {
-       
-        mph =mph+change
-        change = change+1
-        document.getElementById("faster").textContent = `MPH ${mph} with change ${change}`
-    }
-
-  a(href='/pizza') Click here for pizza page
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/pizza") Take me to pizzas
+    br
+    a(href="/logout") Logout

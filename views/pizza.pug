@@ -45,7 +45,7 @@ block content
               h5.card-title(class="card-title text-danger") #{item.pizza_name}
               p.card-text(class="card-text text-success") Type: #{item.pizza_type}
               p.card-text(class="card-text text-info") Price: $#{item.pizza_price}
-              - let destination = `dispatch(\"/costumes/update?id=${item._id}\")`
+              - let destination = `dispatch(\"/pizza/update?id=${item._id}\")`
               button.btn( class="btn-primary ml-1", onclick= destination) Update
 
   script.
