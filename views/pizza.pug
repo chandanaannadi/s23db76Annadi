@@ -26,11 +26,7 @@ extends layout
 block content
   h1= title
   -
-    let results = [
-      {"pizza_name" : "Chicken Pizza", "pizza_type" : "Chicken", "pizza_price" : 200},
-      {"pizza_name" : "Cheese Pizza", "pizza_type" : "Cheese", "pizza_price" : 150},
-      {"pizza_name" : "Veg Onion Pizza", "pizza_type" : "Veg", "pizza_price" : 100}
-    ]
+    let pizza = results
 
   // Add Bootstrap link for styling
   link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css", integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm", crossorigin="anonymous")
@@ -47,6 +43,13 @@ block content
               p.card-text(class="card-text text-info") Price: $#{item.pizza_price}
               - let destination = `dispatch(\"/pizza/update?id=${item._id}\")`
               button.btn( class="btn-primary ml-1", onclick= destination) Update
+              - let destinationcreate = `dispatch(\"/pizza/create\")`
+              button.btn( class="btn-primary ml-1", onclick= destinationcreate) Create
+              - let destinationdetail = `dispatch(\"/pizza/detail\")`
+              button.btn( class="btn-primary ml-1", onclick= destinationdetail) Detail
+              - let destinationdelete = `dispatch(\"/pizza/delete\")`
+              button.btn( class="btn-primary ml-1", onclick= destinationdelete) Delete
+              
 
   script.
     function buy(a) {
